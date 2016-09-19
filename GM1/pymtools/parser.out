@@ -1,0 +1,798 @@
+Created by PLY version 3.4 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> branch
+Rule 1     branch -> base connection segments TIP
+Rule 2     branch -> base connection TIP
+Rule 3     branch -> base connection NAME tag
+Rule 4     branch -> root attach bond COMMA conf
+Rule 5     branch -> root attach NAME COMMA TIP
+Rule 6     branch -> root segments TIP
+Rule 7     branch -> root TIP
+Rule 8     branch -> root segments NAME tag
+Rule 9     branch -> root bond COMMA conf
+Rule 10    base -> root attach
+Rule 11    base -> root
+Rule 12    root -> NAME EQUAL
+Rule 13    attach -> ATTACH REPLACE NAME COLON
+Rule 14    attach -> ATTACH COLON
+Rule 15    segment -> block
+Rule 16    block -> LCBR segments RCBR NUMBER
+Rule 17    segments -> segments segment
+Rule 18    segments -> segment
+Rule 19    segment -> NAME tag connection
+Rule 20    segment -> NAME connection
+Rule 21    connection -> LPAREN bond COMMA tag RPAREN
+Rule 22    connection -> LPAREN bond COMMA conf RPAREN
+Rule 23    connection -> LPAREN bond RPAREN
+Rule 24    tag -> LABR labels RABR
+Rule 25    labels -> labels LABEL
+Rule 26    labels -> LABEL
+Rule 27    bond -> NAME COMMA NAME
+Rule 28    conf -> LSBR angles RSBR
+Rule 29    angles -> angles angle
+Rule 30    angles -> angle
+Rule 31    angle -> NAME NAME NAME NAME ANGLE
+
+Terminals, with rules where they appear
+
+ANGLE                : 31
+ATTACH               : 13 14
+COLON                : 13 14
+COMMA                : 4 5 9 21 22 27
+EQUAL                : 12
+LABEL                : 25 26
+LABR                 : 24
+LCBR                 : 16
+LPAREN               : 21 22 23
+LSBR                 : 28
+NAME                 : 3 5 8 12 13 19 20 27 27 31 31 31 31
+NUMBER               : 16
+RABR                 : 24
+RCBR                 : 16
+REPLACE              : 13
+RPAREN               : 21 22 23
+RSBR                 : 28
+TIP                  : 1 2 5 6 7
+error                : 
+
+Nonterminals, with rules where they appear
+
+angle                : 29 30
+angles               : 28 29
+attach               : 4 5 10
+base                 : 1 2 3
+block                : 15
+bond                 : 4 9 21 22 23
+branch               : 0
+conf                 : 4 9 22
+connection           : 1 2 3 19 20
+labels               : 24 25
+root                 : 4 5 6 7 8 9 10 11
+segment              : 17 18
+segments             : 1 6 8 16 17
+tag                  : 3 8 19 21
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . branch
+    (1) branch -> . base connection segments TIP
+    (2) branch -> . base connection TIP
+    (3) branch -> . base connection NAME tag
+    (4) branch -> . root attach bond COMMA conf
+    (5) branch -> . root attach NAME COMMA TIP
+    (6) branch -> . root segments TIP
+    (7) branch -> . root TIP
+    (8) branch -> . root segments NAME tag
+    (9) branch -> . root bond COMMA conf
+    (10) base -> . root attach
+    (11) base -> . root
+    (12) root -> . NAME EQUAL
+
+    NAME            shift and go to state 1
+
+    base                           shift and go to state 2
+    branch                         shift and go to state 3
+    root                           shift and go to state 4
+
+state 1
+
+    (12) root -> NAME . EQUAL
+
+    EQUAL           shift and go to state 5
+
+
+state 2
+
+    (1) branch -> base . connection segments TIP
+    (2) branch -> base . connection TIP
+    (3) branch -> base . connection NAME tag
+    (21) connection -> . LPAREN bond COMMA tag RPAREN
+    (22) connection -> . LPAREN bond COMMA conf RPAREN
+    (23) connection -> . LPAREN bond RPAREN
+
+    LPAREN          shift and go to state 7
+
+    connection                     shift and go to state 6
+
+state 3
+
+    (0) S' -> branch .
+
+
+
+state 4
+
+    (4) branch -> root . attach bond COMMA conf
+    (5) branch -> root . attach NAME COMMA TIP
+    (6) branch -> root . segments TIP
+    (7) branch -> root . TIP
+    (8) branch -> root . segments NAME tag
+    (9) branch -> root . bond COMMA conf
+    (10) base -> root . attach
+    (11) base -> root .
+    (13) attach -> . ATTACH REPLACE NAME COLON
+    (14) attach -> . ATTACH COLON
+    (17) segments -> . segments segment
+    (18) segments -> . segment
+    (27) bond -> . NAME COMMA NAME
+    (15) segment -> . block
+    (19) segment -> . NAME tag connection
+    (20) segment -> . NAME connection
+    (16) block -> . LCBR segments RCBR NUMBER
+
+    TIP             shift and go to state 12
+    LPAREN          reduce using rule 11 (base -> root .)
+    ATTACH          shift and go to state 9
+    NAME            shift and go to state 8
+    LCBR            shift and go to state 14
+
+    segment                        shift and go to state 10
+    segments                       shift and go to state 11
+    attach                         shift and go to state 13
+    block                          shift and go to state 15
+    bond                           shift and go to state 16
+
+state 5
+
+    (12) root -> NAME EQUAL .
+
+    TIP             reduce using rule 12 (root -> NAME EQUAL .)
+    ATTACH          reduce using rule 12 (root -> NAME EQUAL .)
+    NAME            reduce using rule 12 (root -> NAME EQUAL .)
+    LCBR            reduce using rule 12 (root -> NAME EQUAL .)
+    LPAREN          reduce using rule 12 (root -> NAME EQUAL .)
+
+
+state 6
+
+    (1) branch -> base connection . segments TIP
+    (2) branch -> base connection . TIP
+    (3) branch -> base connection . NAME tag
+    (17) segments -> . segments segment
+    (18) segments -> . segment
+    (15) segment -> . block
+    (19) segment -> . NAME tag connection
+    (20) segment -> . NAME connection
+    (16) block -> . LCBR segments RCBR NUMBER
+
+    TIP             shift and go to state 19
+    NAME            shift and go to state 17
+    LCBR            shift and go to state 14
+
+    segments                       shift and go to state 18
+    segment                        shift and go to state 10
+    block                          shift and go to state 15
+
+state 7
+
+    (21) connection -> LPAREN . bond COMMA tag RPAREN
+    (22) connection -> LPAREN . bond COMMA conf RPAREN
+    (23) connection -> LPAREN . bond RPAREN
+    (27) bond -> . NAME COMMA NAME
+
+    NAME            shift and go to state 20
+
+    bond                           shift and go to state 21
+
+state 8
+
+    (27) bond -> NAME . COMMA NAME
+    (19) segment -> NAME . tag connection
+    (20) segment -> NAME . connection
+    (24) tag -> . LABR labels RABR
+    (21) connection -> . LPAREN bond COMMA tag RPAREN
+    (22) connection -> . LPAREN bond COMMA conf RPAREN
+    (23) connection -> . LPAREN bond RPAREN
+
+    COMMA           shift and go to state 25
+    LABR            shift and go to state 22
+    LPAREN          shift and go to state 7
+
+    connection                     shift and go to state 23
+    tag                            shift and go to state 24
+
+state 9
+
+    (13) attach -> ATTACH . REPLACE NAME COLON
+    (14) attach -> ATTACH . COLON
+
+    REPLACE         shift and go to state 27
+    COLON           shift and go to state 26
+
+
+state 10
+
+    (18) segments -> segment .
+
+    TIP             reduce using rule 18 (segments -> segment .)
+    NAME            reduce using rule 18 (segments -> segment .)
+    LCBR            reduce using rule 18 (segments -> segment .)
+    RCBR            reduce using rule 18 (segments -> segment .)
+
+
+state 11
+
+    (6) branch -> root segments . TIP
+    (8) branch -> root segments . NAME tag
+    (17) segments -> segments . segment
+    (15) segment -> . block
+    (19) segment -> . NAME tag connection
+    (20) segment -> . NAME connection
+    (16) block -> . LCBR segments RCBR NUMBER
+
+    TIP             shift and go to state 30
+    NAME            shift and go to state 28
+    LCBR            shift and go to state 14
+
+    segment                        shift and go to state 29
+    block                          shift and go to state 15
+
+state 12
+
+    (7) branch -> root TIP .
+
+    $end            reduce using rule 7 (branch -> root TIP .)
+
+
+state 13
+
+    (4) branch -> root attach . bond COMMA conf
+    (5) branch -> root attach . NAME COMMA TIP
+    (10) base -> root attach .
+    (27) bond -> . NAME COMMA NAME
+
+    NAME            shift and go to state 31
+    LPAREN          reduce using rule 10 (base -> root attach .)
+
+    bond                           shift and go to state 32
+
+state 14
+
+    (16) block -> LCBR . segments RCBR NUMBER
+    (17) segments -> . segments segment
+    (18) segments -> . segment
+    (15) segment -> . block
+    (19) segment -> . NAME tag connection
+    (20) segment -> . NAME connection
+    (16) block -> . LCBR segments RCBR NUMBER
+
+    NAME            shift and go to state 33
+    LCBR            shift and go to state 14
+
+    segments                       shift and go to state 34
+    segment                        shift and go to state 10
+    block                          shift and go to state 15
+
+state 15
+
+    (15) segment -> block .
+
+    RCBR            reduce using rule 15 (segment -> block .)
+    NAME            reduce using rule 15 (segment -> block .)
+    LCBR            reduce using rule 15 (segment -> block .)
+    TIP             reduce using rule 15 (segment -> block .)
+
+
+state 16
+
+    (9) branch -> root bond . COMMA conf
+
+    COMMA           shift and go to state 35
+
+
+state 17
+
+    (3) branch -> base connection NAME . tag
+    (19) segment -> NAME . tag connection
+    (20) segment -> NAME . connection
+    (24) tag -> . LABR labels RABR
+    (21) connection -> . LPAREN bond COMMA tag RPAREN
+    (22) connection -> . LPAREN bond COMMA conf RPAREN
+    (23) connection -> . LPAREN bond RPAREN
+
+    LABR            shift and go to state 22
+    LPAREN          shift and go to state 7
+
+    tag                            shift and go to state 36
+    connection                     shift and go to state 23
+
+state 18
+
+    (1) branch -> base connection segments . TIP
+    (17) segments -> segments . segment
+    (15) segment -> . block
+    (19) segment -> . NAME tag connection
+    (20) segment -> . NAME connection
+    (16) block -> . LCBR segments RCBR NUMBER
+
+    TIP             shift and go to state 37
+    NAME            shift and go to state 33
+    LCBR            shift and go to state 14
+
+    segment                        shift and go to state 29
+    block                          shift and go to state 15
+
+state 19
+
+    (2) branch -> base connection TIP .
+
+    $end            reduce using rule 2 (branch -> base connection TIP .)
+
+
+state 20
+
+    (27) bond -> NAME . COMMA NAME
+
+    COMMA           shift and go to state 25
+
+
+state 21
+
+    (21) connection -> LPAREN bond . COMMA tag RPAREN
+    (22) connection -> LPAREN bond . COMMA conf RPAREN
+    (23) connection -> LPAREN bond . RPAREN
+
+    COMMA           shift and go to state 39
+    RPAREN          shift and go to state 38
+
+
+state 22
+
+    (24) tag -> LABR . labels RABR
+    (25) labels -> . labels LABEL
+    (26) labels -> . LABEL
+
+    LABEL           shift and go to state 41
+
+    labels                         shift and go to state 40
+
+state 23
+
+    (20) segment -> NAME connection .
+
+    RCBR            reduce using rule 20 (segment -> NAME connection .)
+    NAME            reduce using rule 20 (segment -> NAME connection .)
+    LCBR            reduce using rule 20 (segment -> NAME connection .)
+    TIP             reduce using rule 20 (segment -> NAME connection .)
+
+
+state 24
+
+    (19) segment -> NAME tag . connection
+    (21) connection -> . LPAREN bond COMMA tag RPAREN
+    (22) connection -> . LPAREN bond COMMA conf RPAREN
+    (23) connection -> . LPAREN bond RPAREN
+
+    LPAREN          shift and go to state 7
+
+    connection                     shift and go to state 42
+
+state 25
+
+    (27) bond -> NAME COMMA . NAME
+
+    NAME            shift and go to state 43
+
+
+state 26
+
+    (14) attach -> ATTACH COLON .
+
+    NAME            reduce using rule 14 (attach -> ATTACH COLON .)
+    LPAREN          reduce using rule 14 (attach -> ATTACH COLON .)
+
+
+state 27
+
+    (13) attach -> ATTACH REPLACE . NAME COLON
+
+    NAME            shift and go to state 44
+
+
+state 28
+
+    (8) branch -> root segments NAME . tag
+    (19) segment -> NAME . tag connection
+    (20) segment -> NAME . connection
+    (24) tag -> . LABR labels RABR
+    (21) connection -> . LPAREN bond COMMA tag RPAREN
+    (22) connection -> . LPAREN bond COMMA conf RPAREN
+    (23) connection -> . LPAREN bond RPAREN
+
+    LABR            shift and go to state 22
+    LPAREN          shift and go to state 7
+
+    connection                     shift and go to state 23
+    tag                            shift and go to state 45
+
+state 29
+
+    (17) segments -> segments segment .
+
+    TIP             reduce using rule 17 (segments -> segments segment .)
+    NAME            reduce using rule 17 (segments -> segments segment .)
+    LCBR            reduce using rule 17 (segments -> segments segment .)
+    RCBR            reduce using rule 17 (segments -> segments segment .)
+
+
+state 30
+
+    (6) branch -> root segments TIP .
+
+    $end            reduce using rule 6 (branch -> root segments TIP .)
+
+
+state 31
+
+    (5) branch -> root attach NAME . COMMA TIP
+    (27) bond -> NAME . COMMA NAME
+
+    COMMA           shift and go to state 46
+
+
+state 32
+
+    (4) branch -> root attach bond . COMMA conf
+
+    COMMA           shift and go to state 47
+
+
+state 33
+
+    (19) segment -> NAME . tag connection
+    (20) segment -> NAME . connection
+    (24) tag -> . LABR labels RABR
+    (21) connection -> . LPAREN bond COMMA tag RPAREN
+    (22) connection -> . LPAREN bond COMMA conf RPAREN
+    (23) connection -> . LPAREN bond RPAREN
+
+    LABR            shift and go to state 22
+    LPAREN          shift and go to state 7
+
+    connection                     shift and go to state 23
+    tag                            shift and go to state 24
+
+state 34
+
+    (16) block -> LCBR segments . RCBR NUMBER
+    (17) segments -> segments . segment
+    (15) segment -> . block
+    (19) segment -> . NAME tag connection
+    (20) segment -> . NAME connection
+    (16) block -> . LCBR segments RCBR NUMBER
+
+    RCBR            shift and go to state 48
+    NAME            shift and go to state 33
+    LCBR            shift and go to state 14
+
+    segment                        shift and go to state 29
+    block                          shift and go to state 15
+
+state 35
+
+    (9) branch -> root bond COMMA . conf
+    (28) conf -> . LSBR angles RSBR
+
+    LSBR            shift and go to state 49
+
+    conf                           shift and go to state 50
+
+state 36
+
+    (3) branch -> base connection NAME tag .
+    (19) segment -> NAME tag . connection
+    (21) connection -> . LPAREN bond COMMA tag RPAREN
+    (22) connection -> . LPAREN bond COMMA conf RPAREN
+    (23) connection -> . LPAREN bond RPAREN
+
+    $end            reduce using rule 3 (branch -> base connection NAME tag .)
+    LPAREN          shift and go to state 7
+
+    connection                     shift and go to state 42
+
+state 37
+
+    (1) branch -> base connection segments TIP .
+
+    $end            reduce using rule 1 (branch -> base connection segments TIP .)
+
+
+state 38
+
+    (23) connection -> LPAREN bond RPAREN .
+
+    TIP             reduce using rule 23 (connection -> LPAREN bond RPAREN .)
+    NAME            reduce using rule 23 (connection -> LPAREN bond RPAREN .)
+    LCBR            reduce using rule 23 (connection -> LPAREN bond RPAREN .)
+    RCBR            reduce using rule 23 (connection -> LPAREN bond RPAREN .)
+
+
+state 39
+
+    (21) connection -> LPAREN bond COMMA . tag RPAREN
+    (22) connection -> LPAREN bond COMMA . conf RPAREN
+    (24) tag -> . LABR labels RABR
+    (28) conf -> . LSBR angles RSBR
+
+    LABR            shift and go to state 22
+    LSBR            shift and go to state 49
+
+    tag                            shift and go to state 51
+    conf                           shift and go to state 52
+
+state 40
+
+    (24) tag -> LABR labels . RABR
+    (25) labels -> labels . LABEL
+
+    RABR            shift and go to state 53
+    LABEL           shift and go to state 54
+
+
+state 41
+
+    (26) labels -> LABEL .
+
+    RABR            reduce using rule 26 (labels -> LABEL .)
+    LABEL           reduce using rule 26 (labels -> LABEL .)
+
+
+state 42
+
+    (19) segment -> NAME tag connection .
+
+    RCBR            reduce using rule 19 (segment -> NAME tag connection .)
+    NAME            reduce using rule 19 (segment -> NAME tag connection .)
+    LCBR            reduce using rule 19 (segment -> NAME tag connection .)
+    TIP             reduce using rule 19 (segment -> NAME tag connection .)
+
+
+state 43
+
+    (27) bond -> NAME COMMA NAME .
+
+    COMMA           reduce using rule 27 (bond -> NAME COMMA NAME .)
+    RPAREN          reduce using rule 27 (bond -> NAME COMMA NAME .)
+
+
+state 44
+
+    (13) attach -> ATTACH REPLACE NAME . COLON
+
+    COLON           shift and go to state 55
+
+
+state 45
+
+    (8) branch -> root segments NAME tag .
+    (19) segment -> NAME tag . connection
+    (21) connection -> . LPAREN bond COMMA tag RPAREN
+    (22) connection -> . LPAREN bond COMMA conf RPAREN
+    (23) connection -> . LPAREN bond RPAREN
+
+    $end            reduce using rule 8 (branch -> root segments NAME tag .)
+    LPAREN          shift and go to state 7
+
+    connection                     shift and go to state 42
+
+state 46
+
+    (5) branch -> root attach NAME COMMA . TIP
+    (27) bond -> NAME COMMA . NAME
+
+    TIP             shift and go to state 56
+    NAME            shift and go to state 43
+
+
+state 47
+
+    (4) branch -> root attach bond COMMA . conf
+    (28) conf -> . LSBR angles RSBR
+
+    LSBR            shift and go to state 49
+
+    conf                           shift and go to state 57
+
+state 48
+
+    (16) block -> LCBR segments RCBR . NUMBER
+
+    NUMBER          shift and go to state 58
+
+
+state 49
+
+    (28) conf -> LSBR . angles RSBR
+    (29) angles -> . angles angle
+    (30) angles -> . angle
+    (31) angle -> . NAME NAME NAME NAME ANGLE
+
+    NAME            shift and go to state 59
+
+    angle                          shift and go to state 61
+    angles                         shift and go to state 60
+
+state 50
+
+    (9) branch -> root bond COMMA conf .
+
+    $end            reduce using rule 9 (branch -> root bond COMMA conf .)
+
+
+state 51
+
+    (21) connection -> LPAREN bond COMMA tag . RPAREN
+
+    RPAREN          shift and go to state 62
+
+
+state 52
+
+    (22) connection -> LPAREN bond COMMA conf . RPAREN
+
+    RPAREN          shift and go to state 63
+
+
+state 53
+
+    (24) tag -> LABR labels RABR .
+
+    LPAREN          reduce using rule 24 (tag -> LABR labels RABR .)
+    $end            reduce using rule 24 (tag -> LABR labels RABR .)
+    RPAREN          reduce using rule 24 (tag -> LABR labels RABR .)
+
+
+state 54
+
+    (25) labels -> labels LABEL .
+
+    RABR            reduce using rule 25 (labels -> labels LABEL .)
+    LABEL           reduce using rule 25 (labels -> labels LABEL .)
+
+
+state 55
+
+    (13) attach -> ATTACH REPLACE NAME COLON .
+
+    NAME            reduce using rule 13 (attach -> ATTACH REPLACE NAME COLON .)
+    LPAREN          reduce using rule 13 (attach -> ATTACH REPLACE NAME COLON .)
+
+
+state 56
+
+    (5) branch -> root attach NAME COMMA TIP .
+
+    $end            reduce using rule 5 (branch -> root attach NAME COMMA TIP .)
+
+
+state 57
+
+    (4) branch -> root attach bond COMMA conf .
+
+    $end            reduce using rule 4 (branch -> root attach bond COMMA conf .)
+
+
+state 58
+
+    (16) block -> LCBR segments RCBR NUMBER .
+
+    TIP             reduce using rule 16 (block -> LCBR segments RCBR NUMBER .)
+    NAME            reduce using rule 16 (block -> LCBR segments RCBR NUMBER .)
+    LCBR            reduce using rule 16 (block -> LCBR segments RCBR NUMBER .)
+    RCBR            reduce using rule 16 (block -> LCBR segments RCBR NUMBER .)
+
+
+state 59
+
+    (31) angle -> NAME . NAME NAME NAME ANGLE
+
+    NAME            shift and go to state 64
+
+
+state 60
+
+    (28) conf -> LSBR angles . RSBR
+    (29) angles -> angles . angle
+    (31) angle -> . NAME NAME NAME NAME ANGLE
+
+    RSBR            shift and go to state 65
+    NAME            shift and go to state 59
+
+    angle                          shift and go to state 66
+
+state 61
+
+    (30) angles -> angle .
+
+    RSBR            reduce using rule 30 (angles -> angle .)
+    NAME            reduce using rule 30 (angles -> angle .)
+
+
+state 62
+
+    (21) connection -> LPAREN bond COMMA tag RPAREN .
+
+    TIP             reduce using rule 21 (connection -> LPAREN bond COMMA tag RPAREN .)
+    NAME            reduce using rule 21 (connection -> LPAREN bond COMMA tag RPAREN .)
+    LCBR            reduce using rule 21 (connection -> LPAREN bond COMMA tag RPAREN .)
+    RCBR            reduce using rule 21 (connection -> LPAREN bond COMMA tag RPAREN .)
+
+
+state 63
+
+    (22) connection -> LPAREN bond COMMA conf RPAREN .
+
+    TIP             reduce using rule 22 (connection -> LPAREN bond COMMA conf RPAREN .)
+    NAME            reduce using rule 22 (connection -> LPAREN bond COMMA conf RPAREN .)
+    LCBR            reduce using rule 22 (connection -> LPAREN bond COMMA conf RPAREN .)
+    RCBR            reduce using rule 22 (connection -> LPAREN bond COMMA conf RPAREN .)
+
+
+state 64
+
+    (31) angle -> NAME NAME . NAME NAME ANGLE
+
+    NAME            shift and go to state 67
+
+
+state 65
+
+    (28) conf -> LSBR angles RSBR .
+
+    $end            reduce using rule 28 (conf -> LSBR angles RSBR .)
+    RPAREN          reduce using rule 28 (conf -> LSBR angles RSBR .)
+
+
+state 66
+
+    (29) angles -> angles angle .
+
+    RSBR            reduce using rule 29 (angles -> angles angle .)
+    NAME            reduce using rule 29 (angles -> angles angle .)
+
+
+state 67
+
+    (31) angle -> NAME NAME NAME . NAME ANGLE
+
+    NAME            shift and go to state 68
+
+
+state 68
+
+    (31) angle -> NAME NAME NAME NAME . ANGLE
+
+    ANGLE           shift and go to state 69
+
+
+state 69
+
+    (31) angle -> NAME NAME NAME NAME ANGLE .
+
+    RSBR            reduce using rule 31 (angle -> NAME NAME NAME NAME ANGLE .)
+    NAME            reduce using rule 31 (angle -> NAME NAME NAME NAME ANGLE .)
+
